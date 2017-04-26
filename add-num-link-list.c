@@ -1,3 +1,7 @@
+/*
+ * Add two numbers represented as a linked list.
+ * To make addition easy, numbers are saved in the reverse order.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -19,6 +23,15 @@ create_node(struct ListNode **head, int val) {
 }
 
 
+void
+print_num(struct ListNode *head) {
+    if (head == NULL) return ;
+    else print_num(head->next);
+
+    printf("%d", head->val);
+}
+
+/* NB: Numbers are stored in the reverse order */
 struct ListNode * 
 addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
     
@@ -73,6 +86,7 @@ main() {
 
 	t1 = t2 = NULL;
 
+	/* Create 2 numbers */
 	t = &t1;
 	create_node(t, 3);
 	t = &((*t)->next);
@@ -84,26 +98,12 @@ main() {
 	create_node(t, 2);
 
 	head = addTwoNumbers(t1, t2);
-
-	printf("h1 = [");
-	tmp = t1;
-	while (tmp != NULL) {
-		printf("%d ", tmp->val);
-		tmp = tmp->next;
-	}
-
-	printf("]\nh2 = [");
-	tmp = t2;
-	while (tmp != NULL) {
-		printf("%d ", tmp->val);
-		tmp = tmp->next;
-	}
-
-	printf("]\nResult: [");
-	tmp = head;
-	while (tmp != NULL) {
-		printf("%d ", tmp->val);
-		tmp = tmp->next;
-	}
-	printf("]\n");
+	
+	printf("T1: ");
+	print_num(t1);
+	printf(\nT2: ");
+	print_num(t2);
+	printf("\nResult: ");
+	print_num(head);
+	printf("\n");
 }
