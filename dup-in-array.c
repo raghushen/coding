@@ -1,6 +1,6 @@
 /*
  * Given an array of size n+1 that has numbers between [1-n], find the
- * duplicates.
+ * duplicates. NB: Every element in the range will apear atleast once.
  * Algo. Traverse the list and use the array element as the index and jump
  * to that index and make it -ve if its positive. If its already -ve, we've
  * already visited the index and the number and hence the index should be 
@@ -16,7 +16,7 @@ find_dup(int *A, int sz) {
 	int i;
 
 	for(i=0; i<sz; ++i) {
-		if (A[A[i]] >= 0) 
+		if (A[abs(A[i])] > 0) // NB: arry starts from 1, not 0
 			A[abs(A[i])] = -A[abs(A[i])];
 		else
 			printf("%d ", abs(A[i]));
