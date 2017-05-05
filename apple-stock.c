@@ -11,7 +11,7 @@ get_max_profit(int *a, int sz) {
 	cur_max = total_max = 0;
 	
 	for (i=0; i<sz-1; ++i) {
-		if (a[i] > a[i+1]) { // Optimize look by starting with a value where we make non-zero profit.
+		if (a[i] > a[i+1]) { // Optimize loop by starting with a value where we make non-zero profit.
 			continue;
 		}
 		for (j=i+1; j<sz; ++j) {
