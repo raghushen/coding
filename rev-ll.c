@@ -61,6 +61,18 @@ rev_recursive(Node **head, Node *node)
 	return (node);
 }
 
+Node *
+rev_rec_list(Node *head) {
+	Node *t;
+	/* NB: This return(head) don't changed as reccursion unwinds. Hence, last node is eventually returned as head */
+	if (head == NULL || head->next == NULL) return (head);
+	
+	t = rev_rev_list(head->next);
+	head->next->next = h;
+	head->next = NULL;
+	return(t); /* NB: same node pointer gets returned as it unwinds */
+}
+
 void
 print_list(Node *head)
 {
@@ -86,8 +98,10 @@ main()
 	create_list(&head, 8);
 	create_list(&head, 9);
 	print_list(head);
-	rev_recursive(&head, head);
-	print_list(head);
-	rev_recursive(&head, head);
+	// rev_recursive(&head, head);
+	// print_list(head);
+	// recursive(&head, head);
+	// print_list(head);
+	head = rev_rec_list(head);
 	print_list(head);
 }
