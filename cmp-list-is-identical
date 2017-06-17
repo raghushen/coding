@@ -1,0 +1,37 @@
+/*
+ * Given two lists A and B, compare the two and return 1 if they are identical, or return false if they are not.
+ */
+ 
+ int CompareLists(Node *headA, Node* headB)
+{
+    int val;
+    
+    /* If it reached this line, either both lists are NULL or they are of same length. */
+    if (headA == NULL && headB == NULL) return (1); 
+    
+    /* Return 0 if they are of diff. length */    
+    if ((headA == NULL && headB != NULL) || (headA != NULL && headB == NULL)) return (0);
+
+    val = CompareLists(headA->next, headB->next);
+    
+    /* Return 0 if they are diff. */
+    if (headA->data != headB->data) {
+        return (0);
+    }
+
+    return (val);     
+}
+
+/*
+ * Note: The point is to return 0 when they are not the same and from that point on, all the recursively unwinding calls
+ *       should also return 0. Hence, "val" does not change from the point they are different.
+ * Note: If we had
+ * if (headA->data != headB->data) {
+ *       return (0);
+  *  } else
+  *      return (1);
+  *
+  * This logic is wrong, since if they have the same length, and the first element is the same, function will always
+  * return 1 since last unwind returns 1 even though rest of them are different. Its important to *not* include
+  * "else" part.
+  */
